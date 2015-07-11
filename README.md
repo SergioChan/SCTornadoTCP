@@ -3,6 +3,9 @@ A TCP Server and Client based on `tornado`.
 
 Written specifically for the server-to-server internal request.
 
+The server can be represented by the picture below:
+
+![](https://github.com/SergioChan/tornado-TCP/blob/master/tornado-TCP%20framework.png)  
 ## Connection
 
 Any other server that was connected to this `tornado-TCP` server will be represented as a `client-server`. Each `client-server` will maintain a TCP connection with `tornado-TCP` server. If the connection will be used very frequently, it's better not to close it. Keeping an `IOStream` for the connection will make the communication in the server-side Local Area Network faster than typical HTTP request.
