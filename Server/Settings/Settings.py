@@ -1,3 +1,4 @@
+#coding=utf-8
 __author__ = 'Yuheng Chen'
 
 SERVER_PORT = 8889

@@ -1,11 +1,13 @@
+# coding=utf-8
 __author__ = 'Yuheng Chen'
 
-from tornado.ioloop  import IOLoop
+from tornado.ioloop import IOLoop
 from Server.Server import BaseServer
 from Settings import Settings
 from tornado.netutil import bind_sockets
 from tornado import process
 import tornado
+
 
 if __name__ == '__main__':
     print "Server start ......"

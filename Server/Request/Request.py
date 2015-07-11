@@ -1,10 +1,13 @@
+# coding=utf-8
 __author__ = 'Yuheng Chen'
+
 import demjson
 import time
 
+
 class Request(object):
     '''
-    `Request` is the basic object type in the stream.
+    `Request` is the basic object type in the IOStream.
     Each `Request` is delimited by a delimiter '\n'.
     `Request` transported in a serialization mode, using normal json type.
 
@@ -23,7 +26,8 @@ class Request(object):
 
     5.`params`:a dict that storage all the data it takes
     '''
-    def __init__(self, address = None, Body = None):
+
+    def __init__(self, address=None, Body=None):
         self.address = address
 
         if not Body:
@@ -31,6 +35,7 @@ class Request(object):
         else:
             self.rawBody = Body
 
+        print self.rawBody
         data = demjson.decode(self.rawBody)
         self.cmdid = None
         self.timestamp = int(time.time())
@@ -48,5 +53,5 @@ class Request(object):
         used for serialization storage
         :return: a string value represents the reqeust
         '''
-        tmp = {'address':self.address,'body':self.rawBody}
+        tmp = {'address': self.address, 'body': self.rawBody}
         return demjson.encode(tmp)
