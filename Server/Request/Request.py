@@ -1,7 +1,7 @@
 # coding=utf-8
 __author__ = 'Yuheng Chen'
 
-import demjson
+import json
 import time
 
 
@@ -36,15 +36,15 @@ class Request(object):
             self.rawBody = Body
 
         print self.rawBody
-        data = demjson.decode(self.rawBody)
+        data = json.loads(self.rawBody)
         self.cmdid = None
         self.timestamp = int(time.time())
         self.params = dict()
 
         if data.has_key('cmdid'):
-            self.cmdid = data['cmdid']
+            self.cmdid = int(data['cmdid'])
         if data.has_key('timestamp'):
-            self.timestamp = data['timestamp']
+            self.timestamp = int(data['timestamp'])
         if data.has_key('params'):
             self.params = data['params']
 
@@ -54,4 +54,4 @@ class Request(object):
         :return: a string value represents the reqeust
         '''
         tmp = {'address': self.address, 'body': self.rawBody}
-        return demjson.encode(tmp)
+        return json.dumps(tmp)
