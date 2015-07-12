@@ -36,6 +36,7 @@ class Connection(object):
         if isinstance(handler_instance,BaseHandler):
             try:
                 handler_instance.process(request=request)
+                self._stream.write(handler_instance.res)
             except Exception as e:
                 print e.message
 

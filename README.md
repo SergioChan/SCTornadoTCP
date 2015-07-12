@@ -3,7 +3,17 @@ A TCP Server and Client based on `tornado`.
 
 Written specifically for the server-to-server internal request.
 
-The server can be represented by the picture below:
+## Current Version
+
+Alpha Version 0.1.1
+
+## License
+
+MIT License
+
+## Structure
+
+The server can be represented by the Architecture diagram below:
 
 ![](https://raw.githubusercontent.com/SergioChan/tornado-TCP/master/tornado-TCP%20framework.png)  
 ## Connection

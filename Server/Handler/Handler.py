@@ -6,13 +6,27 @@ import constant
 from Request.Request import Request
 
 class BaseHandler(object):
-    pass
+    '''
+    Base Class for Handler.
+    You can custom your db connections or logger here.
+    '''
+    res = None
+
+    def process(self,request):
+        '''
+        This method needs to be overridden.
+        If not, raise `NotImplementedError`
+        '''
+        raise NotImplementedError
 
 @urls.handler(constant.TEST_CMDID)
 class TestHandler(BaseHandler):
 
+    TAG = 'TestHandler'
+
     def process(self,request):
         if isinstance(request, Request):
             print request.params
+            self.res = "{'code':0}"
         else:
             raise TypeError
