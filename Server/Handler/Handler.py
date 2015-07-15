@@ -12,7 +12,6 @@ class BaseHandler(object):
     You can custom your db connections or logger here.
     '''
     res = None
-    logger = None
 
     def process(self,request):
         '''

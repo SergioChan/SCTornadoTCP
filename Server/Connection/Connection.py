@@ -10,6 +10,16 @@ from tornado.iostream import StreamClosedError
 
 
 class Connection(object):
+    '''
+    Connection is the base Class for server and client communication.
+    Each connection between Server and client-server will be
+    maintained by a `Connection` instance.
+    Connection will read the request from IOStream and handle
+    the requests.
+    When a request handling is over, the Connection will automatically
+    read the stream to get the next request.
+    '''
+
     clients = set()
 
     def __init__(self, stream, address):
