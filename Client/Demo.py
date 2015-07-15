@@ -2,7 +2,7 @@
 __author__ = 'Yuheng Chen'
 
 from Request import Request
-import socket
+import socket,errno
 
 HOST = '127.0.0.1'
 # The remote host
@@ -19,7 +19,14 @@ s.connect((HOST, PORT))
 requestData = {"content":"Hello world!"}
 request = Request(cmdid=TEST_CMDID,data=requestData)
 
-s.send(request.serialization())
+# remember to catch IOError here in order to avoid or solve situations
+# like server rebooting or internal network breakdown.
+try:
+    s.send(request.serialization())
+except IOError as e:
+        if e.errno == errno.EPIPE:
+            # you should try to reconnect your socket connection here
+            pass
 
 result = s.recv(1024)
 print 'result is', repr(result)
