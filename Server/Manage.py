@@ -1,6 +1,7 @@
 # coding=utf-8
 __author__ = 'Yuheng Chen'
 
+from Logger.Logger import baseLogger
 from tornado.ioloop import IOLoop
 from Server.Server import BaseServer
 from Settings import Settings
@@ -10,7 +11,7 @@ import tornado
 
 
 if __name__ == '__main__':
-    print "Server start ......"
+    baseLogger.info('Server is running...')
     server = BaseServer()
 
     if Settings.MULTI_PROCESS:

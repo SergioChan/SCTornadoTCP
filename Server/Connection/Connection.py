@@ -3,6 +3,7 @@ __author__ = 'Yuheng Chen'
 
 from Request.Request import Request
 import Handler.Handler
+from Logger.Logger import baseLogger
 from Handler.Handler import BaseHandler
 import urls
 from tornado.iostream import StreamClosedError
@@ -17,7 +18,7 @@ class Connection(object):
         self._address = address
         self._stream.set_close_callback(self.on_close)
         self.read_request()
-        print "New Connection from server: ", address
+        baseLogger.info(msg=("New Connection from server: ",address))
 
     def read_request(self):
         try:
@@ -38,10 +39,10 @@ class Connection(object):
                 handler_instance.process(request=request)
                 self._stream.write(handler_instance.res)
             except Exception as e:
-                print e.message
+                baseLogger.error(e.message)
 
         self.read_request()
 
     def on_close(self):
-        print "Server connection has been closed: ", self._address
+        baseLogger.info(msg=("Server connection has been closed: ", self._address))
         Connection.clients.remove(self)

@@ -35,7 +35,6 @@ class Request(object):
         else:
             self.rawBody = Body
 
-        print self.rawBody
         data = json.loads(self.rawBody)
         self.cmdid = None
         self.timestamp = int(time.time())

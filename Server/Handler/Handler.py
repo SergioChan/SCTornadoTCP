@@ -4,6 +4,7 @@ __author__ = 'Yuheng Chen'
 import urls
 import constant
 from Request.Request import Request
+from Logger.Logger import testLogger
 
 class BaseHandler(object):
     '''
@@ -11,6 +12,7 @@ class BaseHandler(object):
     You can custom your db connections or logger here.
     '''
     res = None
+    logger = None
 
     def process(self,request):
         '''
@@ -26,7 +28,7 @@ class TestHandler(BaseHandler):
 
     def process(self,request):
         if isinstance(request, Request):
-            print request.params
+            testLogger.info(request.params)
             self.res = "{'code':0}"
         else:
             raise TypeError
